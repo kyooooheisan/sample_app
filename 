@@ -1,0 +1,17 @@
+[33mcommit 18de3d9f80748b994c2b580842dcf0630e05e235[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mheroku/master[m[33m)[m
+Author: kyoheikokai <k.kyohei0915@gmail.com>
+Date:   Sun Apr 7 08:42:19 2019 +0000
+
+    Add hello action
+
+[33mcommit 1d7162d59e340e0e7c44aa1d482a176ebbf0ac56[m
+Author: kyoheikokai <k.kyohei0915@gmail.com>
+Date:   Sun Apr 7 08:38:25 2019 +0000
+
+    Improve ReadMe
+
+[33mcommit d8696b16a4db6ee9d95020bbd8b71388827d6a62[m
+Author: kyoheikokai <k.kyohei0915@gmail.com>
+Date:   Sun Apr 7 08:31:02 2019 +0000
+
+    Initialize repo
