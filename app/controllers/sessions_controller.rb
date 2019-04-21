@@ -7,8 +7,9 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email])
     if user && user.authenticate(params[:session][:password])
-      log_in user #helperで作成したメソッド
       #success
+      log_in user #helperで作成したメソッド
+      params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       redirect_to user
     else
       flash.now[:danger] = "invalid email/password combination"
@@ -17,7 +18,8 @@ class SessionsController < ApplicationController
   end
   
   def destroy
-    log_out
+    #ログインしている？かを確認する
+    log_out if logged_in?
     redirect_to root_url
   end
   
