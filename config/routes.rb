@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   post '/login',   to: 'sessions#create'
   delete '/logout',to: 'sessions#destroy'
   resources :users
+  resources :account_activations, only:[:edit]
+   #GET /account_activations/:id/edit
+   #params[:id] <=== 有効化トークン
 # => contact_path
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
