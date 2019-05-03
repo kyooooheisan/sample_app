@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190423143312) do
+ActiveRecord::Schema.define(version: 20190503132625) do
 
 # Could not dump table "users" because of following StandardError
-#   Unknown type 'sdting' for column 'activation_digest'
+#   Unknown type '' for column 'activation_digest'
 
 end
