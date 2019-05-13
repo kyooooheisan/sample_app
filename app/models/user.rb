@@ -1,5 +1,14 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
+  # テーブル名を渡さなくても成立する。設定したclass_nameをみにいくから
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+  has_many :following, through: "active_relationships" ,source: "followed"
+  has_many :followers, through: "passive_relationships", source: "follower"
   attr_accessor :remember_token,:activation_token,:reset_token
   before_save :downcase_email
   before_create :create_activation_email
@@ -72,7 +81,22 @@ class User < ApplicationRecord
   end
   
   def feed
-    Micropost.where("user_id = ?",self.id)
+    Micropost.where("user_id IN (?) OR user_id = ?", following_ids, id)
+  end
+  
+  # ユーザーをフォローする
+  def follow(other_user)
+    self.active_relationships.create(followed_id: other_user.id)
+  end
+
+  # ユーザーをフォロー解除する
+  def unfollow(other_user)
+    self.active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  # 現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    self.following.include?(other_user)
   end
   
   private
